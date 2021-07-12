@@ -90,11 +90,26 @@ Conjugacy is very important in group theory, they are used in classification res
 For example, $(5, 3, 1) \vdash 9$. We represent paritions by diagrams, in the form of left justified arrays of boxes. For the partition $(\l_1, \l_2, \dots, \l_r)$, we draw $\l_1$ on the top, then $\l_2$, and so on. Let us take $(5, 3, 1)$.
 
 We saw earlier that two elements of $S_n$ are in the same conjugacy class if and only if they have the same cycle type.\\
-We can equivilent record a cycle by a partition of $n$. For our previous example, $\s = (1 6 4 7)(3 5)(2)$ and record the cycle type as $(4, 2, 1)$, as per our pervious definition. This means that there are a bijection between partitions of $n$ \\
+We can equivalent record a cycle by a partition of $n$. For our previous example, $\s = (1 6 4 7)(3 5)(2)$ and record the cycle type as $(4, 2, 1)$, as per our pervious definition. This means that there are a bijection between partitions of $n$ \\
+
+\begin{figure}[!ht]
+  \centering
+  \ydiagram{5,3, 1}
+  \caption{A Young Diagram}
+  % \label{}
+\end{figure}
 
 \begin{ndefi}
   A Young Tableau of shape $\l$, where $\l \vdash n$, is a bijective assignment of the numbers $1, 2, \dots, n$  to the boxes of the diagram of $\l$.
 \end{ndefi}
+
+\begin{ytableau}
+       4 & 1 & 7 & 3 & 6 & 2 \\
+       1 & \none
+\end{ytableau}
+
+% add Young Tableaux
+
 Clearly, the number of such tableaux is $n!$. Such a tableaux is called standard if each column and row is increasing.\\
 First we fix $n$, then draw the diagram and then assign $1$ up to $n$ into the boxes with constraints of increasing in each row and column. We will write $f^\l$ as the number of standard young tableaux of shape $\l$. Understanding the number of $f^\l$ and our importance will be our focus.
 
@@ -105,13 +120,222 @@ Reverend Alphred Young, came up with the tableaux. ``The original man of the yea
 We are going to consider $S_3$. Here are the 6 young tableaux of shape $(2, 1)$.
 \begin{figure}[!ht]
   \centering
-  \includegraphics{./figures/L1.1}
+  \begin{ytableau}
+         1 & 2 \\
+         3 & \none
+  \end{ytableau}
+  \begin{ytableau}
+         1 & 3 \\
+         2 & \none
+  \end{ytableau}
+  \begin{ytableau}
+         2 & 3 \\
+         1 & \none
+  \end{ytableau}
+  \begin{ytableau}
+         2 & 1 \\
+         3 & \none
+  \end{ytableau}
+  \begin{ytableau}
+         3 & 1 \\
+         2 & \none
+  \end{ytableau}
+  \begin{ytableau}
+         3 & 2 \\
+         1 & \none
+  \end{ytableau}
   \caption{The Young Tableaux for $(2, 1)$.}
-  \label{}
+  % \label{}
 \end{figure}
+
+
+
 % write out each of the diagrams.
 The first two are standard tableaux and the rest are not. The conclusion is that $f^{(2, 1)} = 2$.
 
+\section{Hook and Determinant Formula}
+\subsection{Hook Formula}
+
+The box in row $i$ and column $j$ has coordinate $(i, j)$. For example this is $(2, 3)$
+
+% add diagram
+
+Let $\l \vdash n$. For the box $b$ with coordinates $(i, j)$ in the diagram of the shape $\l$, its hook, $H_b$ consists of all the boxes in the same row from $b$ onwards and the boxes from $b$ downwards.
+
+$$ H_n \{(i, j') \text{ a box of } \l \,|\, j' \ge j\} \cup \{(i', j) \text{ a box of } \l \,|\, i' \ge i\} $$
+
+For example, the hook of $(1, 2)$ is shown,
+
+\begin{figure}[!ht]
+  \centering
+  \includegraphics{./figures/L2.1}
+  \caption{}
+  % \label{}
+\end{figure}
+
+The corresponsing hooklength, $h_b = h_{i, j}$ is the number of boxes in the hook:
+$$ h_b = |H_b| $$
+each box has a hook length.
+\begin{figure}[!ht]
+  \centering
+  \includegraphics{./figures/L2.1}
+  \caption{}
+  % \label{}
+\end{figure}
+In the example $h_{1, 2} = 8$.
+
+\begin{nthm}
+  For $\l \vdash n$,
+  $$ f^\l = \frac{n!}{\prod_{(i, j) \in \l} h_{i,j}} $$
+\end{nthm}
+
+For $\l = (3, 2) \vdash 5$, the hook lengths are indicated for each box.
+
+\begin{figure}[!ht]
+  \centering
+  \begin{ytableau}
+         4 & 3 & 1 \\
+         2 & 1 & \none
+  \end{ytableau}
+\end{figure}
+and the hook formula gives us that,
+$$ f^{(3, 2)} = \frac{5!}{4 \cdot 3 \cdot 2} = 5 $$
+\newpage
+Now consider this diagram, again same numbering convention,
+\begin{figure}[!ht]
+  \centering
+  \begin{ytableau}
+         9 & 7 & 6 & 4 & 2 & 1 \\
+         6 & 4 & 3 & 1 & \none & \none\\
+         4 & 2 & 1 & \none & \none & \none\\
+         1 & \none & \none & \none & \none & \none\\
+  \end{ytableau}
+\end{figure}
+
+and the formula gives, $f^{(6, 4, 3, 1)} = \frac{14!}{9 \cdot 7 \cdot 6 \cdot 4 \cdot 2 \cdot 6 \cdot 4 \cdot 3 \cdot 4 \cdot 2}$
+
+
+\subsection{Determinant Formula}
+Let's look at another formula for $f^\l$ calculated via a determinant.\\
+
+We will use the convention that $\frac{1}{r!} = 0$ if $r < 0$ and $0! = 1$.
+
+\begin{nthm}
+  For $\l = (\l_1, \l_2, \dots, \l_r) \vdash n$,
+  $$ f^\l = n! \left| \frac{1}{(\l_i-i+j)!} \right| $$
+  where the determinant is of an $r \times r$ matrix (the thing in the mod symbols is what the matrix is defined as, i.e. $a_{ij} = \frac{1}{(\l_i-i+j)!}$).
+\end{nthm}
+
+For $\l = (3, 2) \vdash 5$, we get,
+$$ f^{(3, 2)} = 5! \left|\begin{matrix}
+  \frac{1}{3!} & \frac{1}{4!}\\
+  \frac{1}{1!} & \frac{1}{2!}
+\end{matrix}\right| $$
+and we can calculate this,
+\begin{align*}
+  f^\l &= 5! (\frac{1}{6} \cdot \frac{1}{2} - \frac{1}{24})\\
+  &= 5!\left(\frac{1}{24}\right)\\
+  &= 5
+\end{align*}
+
+\begin{remark}
+  To write down the correct denominators in the determinant, note that the factorials of the parts of $\l$ appear down the main diagonal. The other entries involve increasing the number in the factorial by $1$ for each step to the right and decrease it by one to the left.
+\end{remark}
+
+For $\l = (4, 2, 2, 1) \vdash 9$, we get,
+$$ f^{(4, 2, 2, 1)} = 9!\left| \begin{matrix}
+  \frac{1}{4!} & \frac{1}{5!} & \frac{1}{6!} & \frac{1}{7!}\\
+  \frac{1}{1!} & \frac{1}{2!} & \frac{1}{3!} & \frac{1}{4!}\\
+  \frac{1}{0!} & \frac{1}{1!} & \frac{1}{2!} & \frac{1}{3!}\\
+  0 & 0 & \frac{1}{0!} & \frac{1}{1!}\\
+  % more here
+\end{matrix} \right|  $$
+
+\subsection{Proving Equality}
+
+Now we aim to assertain that for $\l = (\l_1, \dots, \l_r) \vdash n$,
+$$ \frac{n!}{\prod_{(i, j) \in \l}h_{i, j}} = n! \left| \frac{1}{(\l_i-i+j)!} \right| $$
+Equivalently,
+$$ \frac{1}{\prod_{(i, j) \in \l}h_{i, j}} = \left| \frac{1}{(\l_i-i+j)!} \right| $$
+
+We are going to write $\det_\l$ for the determinant on the right hand side. The first thing to do is to write $\det_\l$ in terms of hook lengths of boxes in the first column of the diagram of $\l$, using,
+$$ \l_i - i + r = h_{i,1} $$
+\begin{ex}
+  This is an exercise, draw a diagram. If a partition has $r$ parts, it has $r$ rows in the diagram.
+\end{ex}
+So,
+$$ \det_\l = \left| \frac{1}{(h_{i,1} - r + j)!} \right| $$
+Now we are going to do induction on $n$. The main step is removing the first column and comparing. So check some base case, for $n = 1$. Since $\l = (1)$ and,
+$$ \det_{(1)} = 1 = \frac{1}{h_{1,1}} $$
+
+Lets write $\overline{\l}$ for the partition corresponding to removing the first column of the diagram $\l$. So,
+$$ \overline{\l} =(\l_1 - 1, \l_2 - 1, \dots, \l_3 - 1) $$
+($\overline{\l}$ could have less entries than $\l$).
+\begin{figure}[!ht]
+  \centering
+  \ydiagram{6,4, 2}
+  \caption{ $\l = (6, 4, 2)$}
+\end{figure}
+\begin{figure}[!ht]
+  \centering
+  \ydiagram{5,3,1}
+  \caption{ $\overline{\l} = (5, 3, 1)$}
+\end{figure}
+
+Notice that the hook length of $\overline{\l}$ are the hook lengths $h_{i,j}$ of $\l$, for $j \ge 2$, that is excluding those for boxes in the first column. Use row and column operations to show that,
+$$ \det_\l = \prod_{i=1}^r \frac{1}{h_{i, 1}}\det_{\overline{\l}} $$
+The result then follows by induction. \\
+A bit of care is needed in the case where $\overline{\l}$ has fewer rows than $\l$, but it still works. This relates to the conventions we made, but it still works out OK.
+
+\subsubsection{Row and Column Operations}
+Lets write $C_j$ for the $j^{th}$ column.
+\begin{itemize}
+  \item Pull out $\frac{1}{h_{i, 1}!}$ from row $i$ for each $i$
+  \item Replace $C_1$ by $C_2 - C_1$ % could be wrong
+  \item Replace $C_2$ by $C_3 - 2C_2$
+  \item Continue in this way, replacing $C_{j-1}$ by $C_j - (j - 1)C_{j-1}$ for $4 \le j \le r$
+  \item Put  $\frac{1}{h_{i, 1}!}$ back into row $i$.
+\end{itemize}
+
+Let's consider $\l = (3, 2) \vdash 5$,
+\begin{figure}[!ht]
+  \centering
+  \begin{ytableau}
+         4 & 3 & 1 \\
+         2 & 1 & \none
+  \end{ytableau}
+\end{figure}
+
+So we have $h_{1, 1} = 4$, $h_{2, 1} = 2$. Removing the first column gives $\overline{\l} = (2, 1) \vdash 3$.
+
+\begin{align*}
+  \det_{3, 2} &= \left| \begin{matrix}
+    \frac{1}{3!} & \frac{1}{4!}\\
+    \frac{1}{1!} & \frac{1}{2!}
+  \end{matrix} \right|\\
+  &= \frac{1}{4!2!} \left| \begin{matrix}
+    4 & 1 \\
+    2 & 1
+  \end{matrix} \right|\\
+  &= \frac{1}{4!2!}\left| \begin{matrix}
+    4-1 & 1 \\
+    2-1 & 1
+  \end{matrix} \right|\\
+  &= \frac{1}{4!2!}\left| \begin{matrix}
+    3 & 1 \\
+    1 & 1
+  \end{matrix} \right|\\
+  &= \frac{1}{4!2!}\left| \begin{matrix}
+    \frac{3}{3!} & \frac{1}{3!} \\
+    1 & 1
+  \end{matrix} \right|\\
+  &= \frac{1}{4 \cdot 2}\left| \begin{matrix}
+    \frac{1}{2!} & \frac{1}{3!} \\
+    \frac{1}{0!} & \frac{1}{1!}
+  \end{matrix} \right|\\
+  &= \frac{1}{4 \cdot 2} \det_{(2, 1)}\\
+  &= \frac{1}{h_{1, 1} \cdot h_{2, 1}}\det_{\overline{\l}}
+\end{align*}
 
 
 
