@@ -462,5 +462,185 @@ Heres how it works, $\l = (2, 1) \vdash 3$. Considering the lengths we see that 
 \end{figure}
 we can see the $J$'s below with tracking data and tracking data of $-1$, as we are moving things down.
 
+\section{Links to Symmetric Group}
+This lecture is an attempt to answer the question, who cares?
+
+One answer is,\\
+$$f^\l = \text{ the dimension of the irreducible representation $S^\l$ of the symmetric group $S_n$ to the partition $\l \vdash n$.}$$
+Very loosely, a representation is an object on which the group acts, and an irreducible one that doesn't contain any smaller non-trivial ones. We will be looking specifically at vector spaces and we can build our actions from smaller building blocks, which are our irreducible representations.
+
+\subsection{Group Representation}
+
+\begin{ndefi}[Group Representations]
+  Let $G$ be a finite group with idenity $e$. A (finite dimensional complex vector space) representation of $G$ is a finite dimensional complex vectorspace $V$, with an action of $G$.
+\end{ndefi}
+
+\begin{ndefi}[Group Action]
+  For $g \in G$ and $v\in V$, we have $gv \in V$ satisfying,
+  \begin{itemize}
+    \item $ev = v$ (identity acts as identity)
+    \item $(gh)v = g(hv)$ (compatibility of the action with group multiplication)
+    \item $g(\a v + \b w) = \a (gv) + \b (gw)$ (compatibility of the action with the vector space structure)
+  \end{itemize}
+  for all $g, h \in G$, $v, w \in V$ and $\a, \b \in \C$.
+\end{ndefi}
+
+Let's look at some examples:
+\begin{itemize}
+  \item The \textit{trivial} representation. Let $V = \C$ and let $\pi v = v$ for all $\pi \in S_n$ and $v \in \C$
+  \item The \text{sign} representation: let $V = \C$ and let $\pi v = \sgn(\pi)v$ for all $\pi \in S_n$ and all $v \in \C$.
+\end{itemize}
+
+\begin{remark}
+  You can always write a permutation as a composite of transposition (2-cycles), not uniquely, but if you see an even number of transpositions you will always get an even number, same for odd. It's not invariant, but the sign defined as $+1$ if it's even, but $-1$ if it's odd and it's invariant.\\
+  Also the sign of a product is the product of the signs.
+\end{remark}
+These are the only one dimensional representations.
+
+\begin{itemize}
+  \item The \textit{natural} representation: let $V = \C$ and let $S_n$ act by permuting the $n$ standard basis vectors. So,
+  $$ \pi\left(\sum_{i=1}^n {\a_ie_i}\right) = \sum_{i=1}^n {\a_ie_{\pi(i)}} $$
+  \item The regular representation: let $V$ be an $n!$ dimensional complex vector space with basis $\{e_{\sigma} = \s \in S_n\}$. The action is determined by the action od the group on itself, $\pi(e_\s) = e_{\pi \s}$.
+\end{itemize}
+
+The first two of these examples are irreducible, the trivial is always irreducible.
+
+The natural representation is not irreducible, its a sum of two irreducible pieces.
+The regular representation is also very much not irreducible. Every single irreducible representation lives in the regular representation.
+
+\newpage
+\subsection{Tabloids}
+We want to start with a partition and construct an irreducible representation of the symmetric group.
+
+\begin{ndefi}[Row Equivilent]
+  We say that two tableaux of shape $\l$ are row equivalent if the corresponding rows contain the same elements.
+\end{ndefi}
+
+\begin{figure}[!ht]
+  \centering
+  \begin{ytableau}
+         1 & 2 & 3 \\
+         4 & \none & \none
+  \end{ytableau}\hspace{20pt}
+  \begin{ytableau}
+         3 & 4 & 1 \\
+         1 & \none & \none
+  \end{ytableau}
+\end{figure}
+
+
+\begin{ndefi}[Tabloid]
+  The tabloid of shape $\l$ is an equivilence class of shale $\l$ under row equivilence. We denote it as $\mathbf{t}$
+\end{ndefi}
+
+We shall write a tabloid as,
+\begin{figure}[!ht]
+\centering
+% notabloids
+\ytableausetup{tabloids,centertableaux}
+\ytableaushort{123,4}
+% \includegraphics{./figures/L4.2}
+\end{figure}
+
+\subsection{Constructing $S^\l$}
+Firstly start with a young tableau $t$ of shape $\l$.\\
+Define an associated column group $C_t$.\\
+Define $\kappa_t$ as a signed sum over the column group, $C_t$.\\
+Define $e_t = \kappa_t \mathbf{t}$ a linear combination of tabloids of shape $\l$.\\
+Then $S^\l$ is thr set of complex linear combination of $e_t$ where $t$ is the tableau of shape $\l$.\\
+
+\subsubsection{Details}
+Let $t$ be a young tableau of hape $\l \vdash n$ and let $C_i$ be the subgroup of $S_n$ consisting of perms of the entries of the column $i$. Then $C_t$ is the associated column group,
+$$ C_t = C_1 \times C_2 \times \dots \times C_k $$
+For example, if t is,
+\begin{figure}[!ht]
+  \centering
+  \ytableausetup{centertableaux}
+  \ytableaushort{125,34} % this may be incorrect
+\end{figure}\footnote{Is this correct?}
+we can say,
+$$ C_t = \{1, (1 3), (2 4), (1 3)(2 4)\}  $$
+Then,
+$$ \kappa_t = \sum_{\pi \in C_t}{\sgn (\pi)\pi} $$
+\newpage
+This is a linear combination of elements of th symmetric group. For example, its just,
+$$ \kappa_t = 1 - (1 3) - (2 4) + (1 3)(2 4)  $$
+and now we get to the last step,
+$$ e_t = \kappa_t \mathbf{t} $$
+\begin{remark}
+  $e_t$ is called the polytabloid associated to the tabloid $\mathbf{t}$.
+\end{remark}
+For example,
+
+\begin{figure}[!ht]
+\centering
+\ytableausetup{centertableaux}
+\ytableaushort{125,34}\hspace{10pt} - \hspace{10pt} \ytableaushort{325,14}\hspace{10pt} - \hspace{10pt}\ytableaushort{145,32}\hspace{10pt} + \hspace{10pt}\ytableaushort{345,12}
+\end{figure}
+
+\begin{ex}
+  Checking the details of the examples is one of the exercises
+\end{ex}
+
+\begin{itemize}
+  \item $S^{(n)}$ is just the trivial representation.
+  \item $S^{(1,1,\dots,1)}$ is the sign representation.
+  \item $S^{(n-1,1)}$ is an $n-1$ dimensional representation and the natural representation is a direct sum of this and the trivial representation.
+\end{itemize}
+
+\begin{nthm}[]
+  The set,
+  $$ \{e_t \,|\, t \text{ is a stanrd tableau of a shape } \l\} $$
+  is a basis for $S^\l$.
+\end{nthm}
+\begin{proof}
+  Ommited
+\end{proof}
+
+\begin{ncor}
+  $$ \dim(S^{\l}) = f^{\l} $$
+\end{ncor}
+\begin{proof}
+   Trivial
+\end{proof}
+
+Example of a basis, let $\l = (2, 1) \vdash 3$. We have two standard tableaux, say $t$ and $t'$ of shape $\l$:
+%insert theorem
+Then $e_t$ is,
+\begin{figure}[!ht]
+\centering
+\includegraphics{./figures/L4.4}
+\end{figure}
+Then $e_{t'}$ is,
+\begin{figure}[!ht]
+\centering
+\includegraphics{./figures/L4.5}
+\end{figure}
+and $S^\l$ is the $2$-dimensional representation of $S_3$ with basis, $\{e_t, e_{t'}\}$
+
+\begin{remark}
+ Every finite dimensional representation is a direct sum of irriductible representations.
+\end{remark}
+
+\subsection{A Run around Representation Theory.}
+\begin{itemize}
+  \item The number of irreducible representation of a finite group $G$ is equal to the number of conjuagcy classes of the group.
+  \item So for $S_n$, the number of irriductible representations is equal to the number o partitions.
+  \item For a partition of $\l$, the representation $S^\l$ is constructed above and irriducible.
+  \item And the $S^\l$ are different so we have a complete list of irriducible representations.
+\end{itemize}
+
+\begin{itemize}
+  \item For a finite group $G$,
+  $$ \sum_{V} (\dim V)^2 = |G| $$
+  where the sum is over all the irriducible representations.
+  \item This follows from the fact that the regular representation contains each irriducible and the number of times each one apparears is equal to its dimension.
+  \item So for $S_n$, this gives,
+  $$ \sum_{\l \vdash n} (f^\l)^2 = n! $$
+\end{itemize}
+
+There is a bijection,
+$$ \text{partition $\l \vdash n$} \longleftrightarrow \text{$S^\l$ irriducible representation of $S_n$} $$
+$S^\l$ has a basis described in terms of the standard young tableaux of shape $\l$ and so dimension $f^\l$.
 
 \end{document}
