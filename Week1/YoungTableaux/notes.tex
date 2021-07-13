@@ -103,10 +103,14 @@ We can equivalent record a cycle by a partition of $n$. For our previous example
   A Young Tableau of shape $\l$, where $\l \vdash n$, is a bijective assignment of the numbers $1, 2, \dots, n$  to the boxes of the diagram of $\l$.
 \end{ndefi}
 
-\begin{ytableau}
-       4 & 1 & 7 & 3 & 6 & 2 \\
-       1 & \none
-\end{ytableau}
+\begin{figure}[!ht]
+  \centering
+  \begin{ytableau}
+         4 & 1 & 7 & 3 & 6 & 2 \\
+         1 & \none
+  \end{ytableau}
+  \caption{A Youngs Tableau}
+\end{figure}
 
 % add Young Tableaux
 
@@ -173,7 +177,7 @@ For example, the hook of $(1, 2)$ is shown,
   % \label{}
 \end{figure}
 
-The corresponsing hooklength, $h_b = h_{i, j}$ is the number of boxes in the hook:
+The corresponding hooklength, $h_b = h_{i, j}$ is the number of boxes in the hook:
 $$ h_b = |H_b| $$
 each box has a hook length.
 \begin{figure}[!ht]
@@ -337,6 +341,126 @@ So we have $h_{1, 1} = 4$, $h_{2, 1} = 2$. Removing the first column gives $\ove
   &= \frac{1}{h_{1, 1} \cdot h_{2, 1}}\det_{\overline{\l}}
 \end{align*}
 
+\section{Bijective Proof of Hook Formula}
+We are going to sketch a bijective proof of this formula. All details won't be included, just some bits of intution.
+
+What to get from this section:
+\begin{itemize}
+  \item Get across some idea / intuition about why this should work.
+  \item The idea of doing a bijective proof. Where this comes from with the formula.
+\end{itemize}
+
+\subsection{Arms and Legs}
+
+\begin{ndefi}[Arms]
+  Let $\l \vdash n$. For the box $b$ with coordinates $(i, j)$ in the diagram of shape $\l$, its arm, $A_b$, consists of all boxes on the same row to the right of $b$.
+  $$ A_b = \{ (i, j') \text{ a box of } \l \,|\, j' > j\} $$
+\end{ndefi}
+
+It's arm length is $a_b = |A_b|$.
+
+\begin{figure}[!ht]
+  \centering
+  \includegraphics{./figures/L3.1}
+\end{figure}
+
+with $a_{1, 2} = 5$
+
+\begin{ndefi}[Legs]
+  Let $\l \vdash n$. For the box $b$ with coordinates $(i, j)$ in the diagram of shape $\l$, its leg, $L_b$, consists of all boxes on the same column below $b$.
+  $$ L_b = \{ (i', j) \text{ a box of } \l \,|\, i' > i\} $$
+\end{ndefi}
+
+It's arm length is $l_b = |L_b|$.
+
+\begin{figure}[!ht]
+  \centering
+  \includegraphics{./figures/L3.1}
+\end{figure}
+
+with $l_{1, 2} = 2$
+
+Let $\l \vdash n$. It follows that, from the definitions,
+$$ h_{i, j} = a_{i,j} + l_{i, j} + 1 $$
+
+\begin{ndefi}[Hook Tableux]
+  A hoot tableaux of shape $\l$ is a diagram $J$ of shape $\l$ with integer entries satisfying,
+  $$ -l_{i,j} \le J_{i,j} \le a_{i,j} $$
+\end{ndefi}
+
+Thus there are $h_{i,j}$ choices for the $(i, j)$ entries in a hook tableau and so $\prod_{(i,j)\in \l} h_{i, j}$ hook tableaux of shape $\l$. We have produced a reasonable set with the size is an important player in the hook formula. This look vaugely relevant in the denominator of the hook formula.
+
+\subsection{The Bijective Proof}
+
+
+We can to rewrite the hook formula,
+$$ n! = f^{\l}\prod_{(i,j) \in \l} h_{i,j} $$
+A bijective proof is forming a bijection between two finite sets, so look at the size and say they are the same size, so sets are basically the same. Hence we want natural number equal natural number. Recall that there are $n!$ tableaux of shape $\l$.
+
+So we can prove the formula by establishing a bijection,
+% make this vertical
+$$ \{\text{Young tableux of shape $\l$}\} \iff \{(P, J)\,|\, \text{$P$ a standard young tableau of shape $\l$ and $J$ a hook tableau of shape $\l$}\} $$
+We are going to note that using pairs is useful in bijective proofs. We now have a plan. We shall show the forward direction, but not show it's a bijection.\\
+
+\subsubsection{The Forward Direction - Standardisation Algorithm}
+We want to standardise the tableau ($P$) and we can track what we are doing, i.e. tracking data $J$. We are going to describe an algorithm to a syandard youngs tableau and then track things using $J$. This gives a forward direction.\\
+
+This process is carried out on the entries in the box of $T$, ordered from the bottom and the right. I.e,
+$$ (i, j) \le (i', j') \iff j > j' \or j = j' \and i \ge i' $$
+
+For example, consider $\l = (3, 2, 1)$ and the order,
+\begin{figure}[!ht]
+  \centering
+  \includegraphics{./figures/L3.3}
+\end{figure}
+
+\begin{notation}
+  We write $T^{\le b}$ to be the part of $T$ containing all the indicated boxes. Similarly $T^{< b}$
+\end{notation}
+
+The algorithm will construct a sequence of pairs $(T_1, J_1) = (T, 0),(T_2, J_2),\dots, (T_n, J_n) = (P,J)$ (the zero is a zero hook tableau and at the end $P$ is standard), such that $T^{\le b_k}$ is standard and $J_k$ is a hook tableau which is zero outside $J^{\le b_k}_k$. We are increasing the standardisation at each step. \\
+
+\noindent
+We need to know what we do at each step, to each $T$'s and the $J$'s. For a box $b = (i, j)$ such that $T^{< b}$ is standard while $T^{\le b}$ is not standard. Do: Consider the entries next to $b$ to the right and below, which ever is smaller (call it $b'$), swap them. Rename $b'$ as $b$ and repeat. When $T^{\le b}$ is standard, stop.\\
+
+\noindent
+How do we know this terminates? $T^{\le b}$ will eventually become standard, in the worst case when there are no further boxes to the right or down from $b$. When the process terminates, we have our next $T$.\\
+
+\newpage
+For the hook tableau $J$ which tracks the changes, we start from $J_1$ with all entries of $0$. Then if the entry in position $(i, j)$ moves to position  $(i', j')$, we change $J$ as follows. It only changes in position in column $j$ and $i$ to $i'$:
+$$ (J_{\text{new}})_{h,j} = \begin{cases}
+  (J_{\text{old}})_{h+1,j-1} & \text{ for $i \le h < i'$}\\
+  j'-j & \text{for $h = i'$}
+\end{cases} $$
+
+So start position $(i, j)$ and end position $(i', j')$, the change to $J$ is:
+\begin{figure}[!ht]
+  \centering
+  \includegraphics{./figures/L3.4}
+  \caption{The Algorithm on a few rows.}
+\end{figure}
+
+Now, let's look at an example:
+\begin{figure}[!ht]
+  \centering
+  \includegraphics{./figures/L3.5}
+  \caption{An example of the algorithm}
+  % {Note a typo on the second row, swap on $T_6$.}
+\end{figure}
+
+We start with a non-standard tableaux $T_1$. Nothing happens for a while, we take the $6$ and then that is standard. Next, we consider $6$ and $3$, then they are again standard. Now, $6, 3$ and $1$, this is again standard. We have something to check, but these three are standard. Next, again they are disconnected and so standard. We now go to $T_5$ and we now have to do something, the $4$ violates the standardness. We now look at the right and see a $3$ and a $5$ below. $3$ is lower, so we now swap them. Now check if it's standard, but it is, so can output $T_5$. We add a just change the $(1, 2)$ zero to one in $J_5$. Now we go to the last box and look at the $2$. Is it standard? No, so move through the standard steps, we see $1$ and $3$ and so swap $1$ and $2$. Then do the same previous case in the tracking data. \footnote{ Note a typo on the second row, swap on $T_6$.}
+
+\subsubsection{Role of Hook Length}
+We must check that each $J$ is a hook tableau. Essentially, $J$ keeps track of how many places to the right and down each entry moves and this gives the constraints of a hook tableau.
+From $(i, j)$ we can at most moce $a_{i,j}$ to the right, so the upper bound should be clear. And we can move at most $l_{i,j}$ places down. This gives the lower bound, which is attained in the case where everything below $(i, j)$ has it's order reversed. It should be plausible that the tracking data in the $J$'s provide enough data to go from $T$ to $P$. This is proved by setting up a map in the other direction and prove it's an inverse of the previous process. It's an algorithm which reverses the provious steps. It's a bit more technical to describe and it involves some details that means its sometimes not well behaved.
+
+Heres how it works, $\l = (2, 1) \vdash 3$. Considering the lengths we see that $J$ has $-1 \le J_{1, 1} \le 1$ and $H_{2, 1} = J_{2,1} = 0$. There are 6 young tableux of shape $(2, 1)$, as seen above. The first two are the only standard ones. Then we can see corresponding pairs to them under the bijection,
+
+\begin{figure}[!ht]
+  \centering
+  \includegraphics{./figures/L3.6}
+\end{figure}
+we can see the $J$'s below with tracking data and tracking data of $-1$, as we are moving things down.
 
 
 \end{document}
