@@ -10,7 +10,7 @@
 \begin{document}
   \maketitle
 
-\section{Overview}
+\section{Overview and }
 \subsection{Continued fraction}
 Let's take $x \in \R$ and we can say, $a < x < a + 1$ where $a \in \Z$. Now we write, $x = a + \frac{1}{x'}$, $x' > 1$.
 
@@ -120,14 +120,12 @@ If you consider the triangles layed next to eachother like this,
   \centering
   \includegraphics{./figures/L1.2}
   \caption{}
-  \label{}
 \end{figure}
 We can count how many triangles are incidence to the vertex. We shall call this $c_i$ where $i$ is the number of the vertex. If we do this for the 7-gon,
 \begin{figure}[!ht]
   \centering
   \includegraphics{./figures/L1.3}
   \caption{}
-  \label{}
 \end{figure}
 The sequence $(a_1, a_2, \dots, a_{2n})$ determines the triangulation and the so does the sequence, $(c_1, c_2, \dots)$.
 
@@ -141,11 +139,125 @@ The sequence $(a_1, a_2, \dots, a_{2n})$ determines the triangulation and the so
 
 \begin{remark}
   On 1) this is called this Hirzebruch Formula,
-  $$ [a_1, a_2, a_3, \dots, a_{2m}] = \![ a_1+1, 2, 2, \dots, 2, a_3+2, 2, \dots \!] $$
+  $$ [a_1, a_2, a_3, \dots, a_{2m}\,] = \![ a_1+1, 2, 2, \dots, 2, a_3+2, 2, \dots \,\!] $$
 \end{remark}
 
 \begin{remark}
   On 2) It works with any kind of triangulations and all friezes arise this way. (This is Conway-Coxeter Theorem) and a Conway-Coxeter Frieze is a frieze with positive integers.
 \end{remark}
+
+\section{Proving Conway-Coxeter Theorem}
+Our main theorem is,
+\begin{nthm}[Conway-Coxeter]
+  There is a bijection,
+  $$ \{\text{freizes of $\Z_{>0}$}\} \longleftrightarrow \{\text{Triangulations of polygons with $w + 3$ polygons} \} $$
+\end{nthm}
+This is given by,
+$$ (c_1,c_2,\dots,c_{w+3}) \longleftrightarrow c_i = \text{\# of triangles incident to $i$} $$
+
+\begin{ndefi}[Quiddity Sequence]
+  We call a quiddity sequence of a polygon, just the $c_i$'s
+\end{ndefi}
+
+This theorem is from `Triangulated Polygons and Frieze patters', it is a two part paper. The first asks questions about friezes, 33 of them. then they give the questions later. The result is lost in the questions. Coxeter gave all credit to Conway. Conway was a victim to the pandemic, RIP. \footnote{I loved Conway's work, what a legend. I missed meeting him once, by five minutes.}
+Conway called the friezes and the result a miricle and doesn't quite know how he came up with them.
+
+\begin{eg}
+  We can look at the following for $w=1$,
+  \begin{figure}[!ht]
+    \centering
+    \includegraphics{./figures/L2.1}
+  \end{figure}
+  It has two solutions of $x = 1$ and $x = \frac{1}{2}$, hence we have two friezes,
+  $$ \begin{matrix}
+    1 & 2 & 1 & 2
+  \end{matrix} $$
+  and,
+  $$ \begin{matrix}
+    2 & 1 & 2 & 1
+  \end{matrix} $$
+  These are two different triangulations. One with vertex 2 and 4 connected and the other 1 and 3 connected.
+\end{eg}
+
+and for $w = 2$, we have
+\begin{eg}
+  We have a different constraint because we want positive integers, this is exercise 2 and it has 5 solutions.
+  \begin{figure}[!ht]
+    \centering
+    \includegraphics{./figures/L2.2}
+  \end{figure}
+  If we look at pentagons we have the same thing by cyclic permutations up to quiddity.
+  $$ (x_1, x_2) = (1, 1) ,(1, 2), (2, 1), (2, 3), (3, 2) $$
+\end{eg}
+
+If we consider the possible case where $w = 0$, we get a degenerate frieze.
+
+\begin{eg}
+  This produces a frieze of `no filling'.
+  \begin{figure}[!ht]
+    \centering
+    \includegraphics{./figures/L2.3}
+  \end{figure}
+\end{eg}
+
+\begin{nthm}[Thm 1]
+  \begin{itemize}
+    \item Friezes of width $w$ are $(w + 3)$-periodic
+    \item Friezes are invariant uder a glide reflection
+    \item Let $c_1, c_2, \dots c_{w+3}$ be the entries in the first row, then all the entries are polynomials in $c_i$'s.
+    \item Let $x_1, x_2,\dots, x_w$ be the entries in a zig-zag from top to bottom in the frieze, then all the entries are Laurent polynomials in $x_i$'s with coefficient in $\Z_{>0}$
+  \end{itemize}
+\end{nthm}
+
+Comments:
+\begin{itemize}
+  \item Item 2 implies 1, as a glide reflection is just a periodic flip and translation.
+  \item Item 3, look at Exercise 3.
+  \begin{figure}[!ht]
+    \centering
+    \includegraphics{./figures/L2.4}
+  \end{figure}
+  \item Item 4,
+  \begin{ndefi}[Laurent Polynomial]
+    $\frac{P(x_1, x_2, x_3, \dots x_w)}{x_1^{k_1}x_2^{k_2}\dots x_w^{k_w}}$
+  \end{ndefi}
+  and if consider a zig zag, all we are going os just saying we are considering things to the left or right and below your current position.
+\end{itemize}
+
+\begin{proof}[Proof of Thm 1]
+  Start with a Conway-Coxeter frieze and call the values of the first row $\dots, c_0, c_1, \dots, (c_i)_{i\in\Z}$. We fix three consecutive diagonals.
+  \begin{figure}[!ht]
+    \centering
+    \includegraphics{./figures/L2.5}
+  \end{figure}
+  \newpage
+  \begin{lemma}
+    $\frac{f_i + h_i}{g_i} = K$
+  \end{lemma}
+  \begin{proof}
+    Apply the frieze rule round these values and get,
+    \begin{align*}
+      1 &= g_i f_{i+1} - f_ig_{i+1}\\
+      1  &= h_ig_{i+1} - g_ih_{i+1}\\
+        g_if_{i+1} + g_ih_{i+1} &= h_ig_{i+1} + f_{i}g_{i+1}\\
+        \frac{f_{i+1}h_{i+1}}{g_{i+1}} &= \frac{f_{i}h_{i}}{g_{i}}
+    \end{align*}
+    and so we can see,
+    \begin{align*}
+      \frac{f_0+h_0}{g_0} &= \frac{f_{w+1} + h_{w+1}}{g_{w+1}}\\
+      c_0 &= f_{w+1}
+    \end{align*}
+    and so we have that we have a type of glide symmetry.
+  \end{proof}
+  Now using identical argument, we can start to determine more of the frieze. Hence, we have proved the glide symmetry. Now, we have also proved (1), which is implied by (2).\\
+
+  We are going to take diagonals in the other direction and use similar arguments, we will find that,
+  $$ \frac{h_0+h_2}{h_1} = \frac{g_0 + g_2}{g_1} = \frac{f_0 + f_2}{f_1} = c_2 $$
+  and hence, we obtain the recurrance relation of,
+  $$ g_i = c_ig_{i-1} - g_{i-2} $$
+  This is the key lemma for the big proof. If $g_{i-1}$ and $g_{i-2}$ are polynomials in $c$, then so is $g_i$. Now, we have proved (3). \\
+
+  Finally, for (4), exercise 4 gives a proof and an explicit formula in the particular case of a diagonal. In the case of an arbitrary zig-zag, we don't know any elementary proof, the one I know is based on Cluster Algebra and Cluster Algebra. You can focus on elements of the frieze as cluster elements.
+\end{proof}
 
 \end{document}
