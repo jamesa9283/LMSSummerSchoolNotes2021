@@ -485,6 +485,14 @@ Very loosely, a representation is an object on which the group acts, and an irre
   for all $g, h \in G$, $v, w \in V$ and $\a, \b \in \C$.
 \end{ndefi}
 
+\begin{ndefi}[Subrepresentation]
+  A vector subspace that preserved the group action
+\end{ndefi}
+
+\begin{ndefi}[Irreducible]
+  A representation is irreducible if it doesn't have any non-trivial subrepresentation.
+\end{ndefi}
+
 Let's look at some examples:
 \begin{itemize}
   \item The \textit{trivial} representation. Let $V = \C$ and let $\pi v = v$ for all $\pi \in S_n$ and $v \in \C$
@@ -570,6 +578,12 @@ $$ e_t = \kappa_t \mathbf{t} $$
 \begin{remark}
   $e_t$ is called the polytabloid associated to the tabloid $\mathbf{t}$.
 \end{remark}
+
+\begin{remark}
+   $\kappa_t$ is the signed sum over the column group. It's a linear combinations of permutations. This lives in the group algebra, this is where we take the elements and declare them a basis of a complex vector space, then we have a multiplication. \\
+   Then the $e_t$ is an element of a representation (vectors), which is a complex vector space, which has an action on the group. These are also a spanning set of the representation of the partition. If we let $t$ be standard, then we get a basis.
+\end{remark}
+
 For example,
 
 \begin{figure}[!ht]
@@ -641,6 +655,21 @@ and $S^\l$ is the $2$-dimensional representation of $S_3$ with basis, $\{e_t, e_
 
 There is a bijection,
 $$ \text{partition $\l \vdash n$} \longleftrightarrow \text{$S^\l$ irriducible representation of $S_n$} $$
-$S^\l$ has a basis described in terms of the standard young tableaux of shape $\l$ and so dimension $f^\l$.
+$S^\l$ has a basis described in terms of the standard young tableaux of shape $\l$ and so dimension $f^\l$.\\
+
+\newpage
+\textbf{Further Reading:}\\
+\begin{itemize}
+  \item Equivariant Algebraic Topology (Topology and group actions / representations)
+  \item Tree Representation of the Symmetric Group
+  \item Modular Representation Theory.
+  \item Skew Tableaux.
+  \item Hyperoctohedral Groups. (Wreath product)
+  \item Splitting Field.
+\end{itemize}
+
+\begin{remark}
+  A transpose of a young tableaux is the tensor product of it with the sign of permutations. 
+\end{remark}
 
 \end{document}
