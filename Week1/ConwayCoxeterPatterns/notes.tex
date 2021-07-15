@@ -37,7 +37,7 @@ or we can form them by subtracting instead of adding, these make negative expans
 $$ x = a_1 - \frac{1}{a_2 - \frac{1}{a_3 - \frac{1}{\ddots}}} $$
 
 \begin{notation}
- $x = [a_1, a_2, \dots]$ means $x$ is a regular continued fraction and $x = [[a_1, a_2, \dots]]$ means a negative expansion.
+ $x = [a_1, a_2, \dots]$ means $x$ is a regular continued fraction and $x = \lb a_1, a_2, \dots\rb $ means a negative expansion.
 \end{notation}
 
   Let's take $x \notin \Q$ and consider the golden ratio,\\
@@ -50,22 +50,22 @@ $$ x = a_1 - \frac{1}{a_2 - \frac{1}{a_3 - \frac{1}{\ddots}}} $$
 Now consider the generalised continued fraction,
 $$ \pi = \frac{4}{1 + \frac{1^2}{2 + \frac{3^2}{2 + \frac{5^2}{\ddots}}}} $$
 Now consider the negative expansion,
-$$ \![2, 2, 2, 2, 2, 2, \dots\!] $$
+$$ \lb 2, 2, 2, 2, 2, 2, \dots\rb  $$
 This is just one. It may be represented with an infinite sequence.\\
 
 Here are some more examples,
 \begin{align*}
-  \frac{5}{2} &= [2, 2] = \![ 3, 2 \!]\\
-  \frac{10}{3} &= [3, 3] = \![ 4, 2, 2 \!]\\
-  \frac{14}{5} &= [2, 1, 3, 1] = \![ 3, 5 \!]\\
-  \frac{43}{16} &= [2, 1, 2, 5] = \![ 3, 4, 2, 2, 2, 2 \!]
+  \frac{5}{2} &= [2, 2] = \lb  3, 2 \rb \\
+  \frac{10}{3} &= [3, 3] = \lb  4, 2, 2 \rb \\
+  \frac{14}{5} &= [2, 1, 3, 1] = \lb  3, 5 \rb \\
+  \frac{43}{16} &= [2, 1, 2, 5] = \lb  3, 4, 2, 2, 2, 2 \rb
 \end{align*}
 
 \begin{remark}
   To make it unique one can always choose an even number for the length of the sequence. For a regular expansion, we can always assume that it's of even length.
 \end{remark}
 
-There is a very natural question, given $x = [a_1, \dots, a_{2m}] = \![c_1, c_2, \dots c_k \!]$, what is the relationship between $a_i$'s and $c_i$'s?
+There is a very natural question, given $x = [a_1, \dots, a_{2m}] = \lb c_1, c_2, \dots c_k \rb $, what is the relationship between $a_i$'s and $c_i$'s?
 
 \subsection{Friezes}
 Friezes are from Coxeter in the 1970's. We have the first and last row as 1's. When you have a diamond of numbers,
@@ -150,14 +150,14 @@ The sequence $(a_1, a_2, \dots, a_{2n})$ determines the triangulation and the so
 \begin{nthm}
   With this data, we can say that,
   \begin{itemize}
-    \item $[a_1, a_2, \dots, a_{2m}] = \![ c_1, c_2, \dots, c_k \!]$
+    \item $[a_1, a_2, \dots, a_{2m}] = \lb  c_1, c_2, \dots, c_k \rb $
     \item $(c_1, c_2, \dots, c_n)$ determines a frieze of width $n-3$ containing only positive integers.
   \end{itemize}
 \end{nthm}
 
 \begin{remark}
   On 1) this is called this Hirzebruch Formula,
-  $$ [a_1, a_2, a_3, \dots, a_{2m}\,] = \![ a_1+1, 2, 2, \dots, 2, a_3+2, 2, \dots \,\!] $$
+  $$ [a_1, a_2, a_3, \dots, a_{2m}\,] = \lb  a_1+1, 2, 2, \dots, 2, a_3+2, 2, \dots \,\rb  $$
 \end{remark}
 
 \begin{remark}
@@ -293,9 +293,9 @@ Comments:
 \section{Proof of the Bijection Theorem}
 We are going to prove the Bijection Theorem by induction,\\
 
-\begin{nthm}[Main Thm]
+\begin{nthm}[Conway-Coxeter]
   There is a bijection,
-  $$ \{\text{friexes over $\Z_{>0}$ of width $w$}\} \longleftrightarrow \{\text{}\} $$
+  $$ \{\text{freizes of $\Z_{>0}$}\} \longleftrightarrow \{\text{Triangulations of polygons with $w + 3$ polygons} \} $$
 \end{nthm}
 
 To go from an triangulated $n$ to a $n+1$-gon, just add a triangle. Our quiddity sequence goes,
@@ -403,7 +403,7 @@ and now consider continued fractions, if we take the triangulation from before, 
 \end{figure}
 
 Now this associated with a rational number, which one? If we look at the triangles above and below the line.
-$$ [1, 3, 1,1] = [1, 3, 2] = [[2, 2, 2, 3]]$$
+$$ [1, 3, 1,1] = [1, 3, 2] = \lb 2, 2, 2, 3\rb $$
 
 Then we can do the `Farey Sum', the sum
 
@@ -423,8 +423,9 @@ We can look at Farey Graphs,
 % insert image
 We can have all the rationals and we draw fractions on the edges, exactly when $pq' - p'q =\pm1$ for two rationals, $\frac{p}{q}$ and $\frac{p'}{q'}$. You can always carry on closer. It's a tesselation on the half plane with weird semi-circle tiles. To find the continued fraction, draw a vertical line and see what you cross, then take that finite picture. Play the game again, going from top down, then colour them from left and right. \\
 
-\newpage
 
+\begin{figure}[!ht]
+\centering
 \begin{tikzpicture}[scale=6]
 \draw (0,0) -- (1,0);
 \draw (1,0) arc (0:180:.5);
@@ -437,7 +438,144 @@ We can have all the rationals and we draw fractions on the edges, exactly when $
 \draw (.5,0) arc (0:180:.25);
 
 \end{tikzpicture}
-\end{document}
+\caption{Farey Sum Rule}
+\end{figure}
 
 Then if we take $\frac{7}{5}$, we can get $[1, 2, 1, 1]$ and then we can go from right to left and map that to a top bottom frieze.
+
+\section{Tying up all the knots}
+In this lecture Hirzebruch Formula, then Geometry of Friezes and New Developments and variants of friezes. We are going to go back and revisit things.\\
+
+\subsection{Hirzebruch Formula}
+
+\begin{nthm}[Hirzebruch Formula]
+  $$ [a_1, a_2, a_3, \dots, a_n] = a_1 + \frac{1}{a_2 + \frac{1}{\ddots}} = c_1 - \frac{1}{c_2 - \frac{1}{c_3 - \frac{1}{\ddots}}}$$
+\end{nthm}
+
+\begin{claim}
+  $$ [a_1, \dots, a_{2m}] = \llbracket a_1 + 1, 2,2, \dots, 2, a_3 + 2, \dots, 2, \dots, a_{2n-1} + 2, 2, \dots, 2\rrbracket $$
+\end{claim}
+
+This formula may be understood as a change of generators in the group $SL_2(2, \Z)$.
+
+$$ T = \begin{matrix}
+  1 & 1 \\ 0 & 1
+\end{matrix} \qquad S = \begin{matrix}
+  0 & -1 \\ 1 & 0
+\end{matrix} \qquad L = \begin{matrix}
+  1 & 0 \\ 1 & 1
+\end{matrix}$$
+
+\begin{fact}
+  $$ SL(2, \Z) = \langle T, S \rangle  = \langle L, T \rangle $$
+\end{fact}
+
+If we consider $T^{c_1}ST^{c_2}S\dots T^{c_k}S = \begin{pmatrix}
+  p & r \\ q & s
+\end{pmatrix}$
+
+\begin{fact}
+  $$ \frac{p}{q} = \lb c_1, c_2, \dots, c_k \rb $$
+\end{fact}
+and so,
+$$ T^{c_1}ST^{c_2}S\dots T^{c_k}S = T^{a_1}L^{a_2}T^{a_3}L^{a_4}\dots T^{a_{2n-1}}L^{a_{2m}} T^* $$
+This can then be seen as our $N$ from the last lecture when we multiply by pairs. We can adjust the $*$ to make sure that the first $TS$ product makes the same as $TL$.
+
+Now we make a matrix computation,
+\begin{nlemma}[]
+  $$ T^a = -M(a+1,1,1) $$
+  $$ L^a = M(1, 2, 2, \dots, 1, 1) $$
+  with $a$ 2's.\\
+  $$ M(1, 1, 1) = -\id $$
+  $$ M(2, 1,1, a+1) = M(a+2) $$
+\end{nlemma}
+\begin{proof}
+  Trivial
+\end{proof}
+
+To get Hirzebruch Formula, just use the previous lemma and make a substitution,
+$$ T^{a_1}L^{a_2} \dots = M(a+1, 1, 1) M(1, 2, 2, \dots, 2, 1, 1)\dots = M(a+1, 2, 2, \dots, 2, 1, 1)\dots $$
+
+adding another,
+$$ T^{a_1}L^{a_2}T^{a_3} \dots = M(a+1, 2, 2, \dots, 2, 1, 1)M(a_3 + 1, 1, 1)\dots = M(a+1, 2, 2, \dots, 2 a_3 +2, 2, 2, 2, \dots) $$
+
+\newpage
+\subsection{Geometry of friezes}
+Friezes were ways to represent relationships between numbers in Geometric pictures.
+
+\begin{figure}[!ht]
+\centering
+\includegraphics{./figures/L4.1}
+\caption{Pentagram on a Sphere}
+\end{figure}
+
+Every line is on a great circle of the sphere and on the extremities we have right angles. In the 16$^{th}$, there was a question to find the analogous of pythagoras in spherical Geometry. \\
+
+If we let $c_i = (\tan \a_i)^2$, then we get a frieze,
+\begin{figure}[!ht]
+\centering
+\begin{tabular}{cccccccccc}
+ 1&&1&&1&&1&&1& \\
+ &$c_1$&&$c_2$&&$c_3$&&$c_4$&&\\
+ &&$c_4$&&$c_5$&&$c_1$&&$c_2$\\
+ &1&&1&&1&&1&& \\
+\end{tabular}
+\end{figure}
+
+$$ c_i c_{i+1} = 1 + c_{i+3} $$
+describes this frieze. There is a cyclic symmetry and the above e1uation is true up to modulo 5.Hence the frieze is $5$ periodic.
+
+
+\begin{nthm}[]
+  If $(c_i)_{i \in \Z}$ such that $c_i \ne 0$ and
+  $$ c_i c_{i+1} = 1 + c_{i+3} $$
+  then $(c_i)$ is five periodic.
+\end{nthm}
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=0.4\textwidth]{./figures/L4.2}
+\end{figure}
+
+\newpage
+We now want configurations of points modulo $PSL(2, \C)$, we can send three metric lines to any other three metric lines. For four lines, it's not always possible, we have to see if they are the same cross ratio.
+
+Let,
+$$ c_1 = (v_2, v_3, v_4, v_5) $$
+$$ c_2 = (v_3, v_4, v_5, v_1) $$
+$$ \vdots $$
+$$ c_5 = (v_1, v_2, v_3, v_4) $$
+
+and again, we get a frieze,
+\begin{figure}[!ht]
+\centering
+\begin{tabular}{cccccccccc}
+ 1&&1&&1&&1&&1& \\
+ &$c_1$&&$c_2$&&$c_3$&&$c_4$&&\\
+ &&$c_4$&&$c_5$&&$c_1$&&\\
+ &1&&1&&1&&1&& \\
+\end{tabular}
+\end{figure}
+
+is a frieze.
+
+$$  $$
+
+This is then equivalent to the set of friezes over $\C \setminus \{0\}$ of width $n-3$.
+
+\subsection{New Developments and Variants}
+In 2005, there was revival of friezes due to their connection with Cluster Algebra. We can change the rule, why shouldn't we use other operations? We don't even need to use subtraction, so we can use tropical semifields,
+$$ a \otimes d = b \otimes d \oplus 1 $$
+and so we have a tropical frieze. We could just have addition,
+$$ a + d = b + c $$
+or nim addition,
+$$ a \boxplus d = b \boxplus c +1 $$
+We can work over $\F_q$, count how many friezes. We can change the configuration again with a middle value called a 2-frieze,
+%    b
+%  a e d
+%    c
+We can get rid of the bottom row and get infinite friezes or look at $SL(2, \Z)$ tilings. We can take bigger squares and look at $SL(k, \Z) / SL(k, \C)$.\\
+
+We can link friezes to Cluster Algebra because of notation and Quivers.
+
 \end{document}
