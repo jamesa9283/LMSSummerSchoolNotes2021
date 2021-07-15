@@ -12,7 +12,7 @@
 
 \textbf{Suggested Reading} - Miles Reid, Undergrad Algebraic Geometry, contains other book recommended. Harris. Coxeter. Harsher, Schafrivich (?), Methods of Algebraic Geometry - Hodge, Ideals, Varieties and Algorithms.\\
 
-\section{Overview}
+\section{Lecture 1 - Overview}
 This course is an introduction to Projective Geometry. In L3cture 1, we will consider and define the complex projective plane and lines in it, define projective transformations and their properties and finally Sylvester-Galllai Theorem.
 
 \subsection{What is a line?}
@@ -250,7 +250,7 @@ Suppose that the subset $\Sigma$ is not contained in one line,
   Suppose $|\Sigma| = 9$ and $\F=\C$. If there exists no line containing exactly two points of the set
 \end{nthm}
 
-\section{Lecture 2}
+\section{Lecture 2 - Conics}
 In this lecture we will cover,
 \begin{itemize}
   \item Conics in the complex projective Plane
@@ -397,7 +397,7 @@ $$ xy = z^2 $$
 \begin{proof}[]
   We can use Classification theorem, so just go to $xy = z^2$.
   \begin{itemize}
-    \item Let $L$ be the line $y = 0$. Then $L cap \mathcal{C} \cap \mathcal{C}' \subset [1 : 0 : 0]$
+    \item Let $L$ be the line $y = 0$. Then $L \cap \mathcal{C} \cap \mathcal{C}' \subset [1 : 0 : 0]$
     \item One has $L \cap \mathcal{C} \cap \mathcal{C}' = [1 : 0 : 0] \iff a = 0 $
     \item Let $U$
   \end{itemize}
@@ -408,6 +408,196 @@ $$ xy = z^2 $$
   \end{figure}
 \end{proof}
 
-Here are some examples of
+Here are some examples
+
+\section{Lecture 3 - Cubics}
+In this lecture,
+\begin{itemize}
+  \item Cubics curves in the complex projective plane
+  \item Each smooth cubic curves in $\pc$ has 9 infection points
+  \item Classification of cubics up to projective transformations
+  \item Legendre, Weirstrass and Hesse forms of cubics
+\end{itemize}
+
+\subparagraph{Complex Irreducible Curves}
+
+\begin{ndefi}[]
+  An irreducible  curve in $\pc$ of degree $d \ge 1$ is a subset given by,
+  $$ f(x, y, z) = 0 $$
+  for an irreducible polynomial $f$ of degree $d$
+\end{ndefi}
+
+\begin{itemize}
+  \item $2x^2 - y^2 + 2z^2 = 0$ is an irreducible conic
+  \item $zy^2 + x(x-  z)(x + z) = 0$ is an irreducible cubib in $\pc$
+\end{itemize}
+
+To do the union of curves, just multiply them.
+
+\subsubsection{Smooth Curves}
+
+Let $\mathcal{C}$ be an irreducible curve and then,
+
+\begin{ndefi}[Singular]
+  A point $[a : b : c] \in \pc$ is singlular if,
+  $$ \pd{f}{x} = \pd{f}{y} = \pd{f}{z} = 0 $$
+\end{ndefi}
+This defines a smooth manifold, but for us this is a curve. We denote $\sing (C)$ to be the set of singular points of $C$. Non-singular points are smooth and $C$ is smooth if it has no singular points.
+
+\begin{eg}
+  If $f = zx^{d - 1} - y^d$ and $d \ge 3$, then $\sing C = [0 : 0 : 1]$.
+\end{eg}
+
+If you take your point and change coordinates and take the chart, then the polynomial will become non-homogenous and then you get a taylor expansion. Then linearise by taking a linear term and this exactly tangent line, but it may vanish. This is a singular point.
+
+Let $P$ be a point then a tangent line is,
+$$ \pd{f}{x}x + \pd{f}{y}y + \pd{f}{z}z = 0 $$
+for $\mathcal{C}$ at $P$.
+
+We can do projective to classify the different types of equations. We can do the same for cubics. This is what this lecture will mainly be about.
+
+We can consider different equivalences of curves, i.e. projectively equivalent and isomorphic. If the degree is not three, they are the same. We won't define isomorphisms as it uses complicated algebraic geometry.
+
+\begin{ex}
+  Find all the matrices for a curve, using transformations and python. You can show that the corresponding respresentation is a symmetric square.
+\end{ex}
+
+\subsubsection{Legendre Form}
+A cubic polynomial, can be listed by 10 different parameters (really 9 by scaling). We then have a large group, the group of projective transformations up to scaling, so eight dimensional. We can't expect a finite number of orbits, as not all planar cubics will be equivilent. So, they will be dependant of one parameter up to projections.
+
+Let $\mathcal{C}$ be a curve in $\pc$,
+\begin{nthm}[Legendre Form]
+  There exists $\phi \in PGL_3(\C)$ such that, $\phi(\mathcal{C})$ given by,
+  $$ xz^2 = y(y - z)(y - \l x) $$
+  for some $\l \in \C$ such that $\l \ne 0$ and $\l \ne 1$.
+\end{nthm}
+
+The proof is similar, to the conic case, the algorithm is similar to conics. Here, however, when we look for the projective transformation we have a lot freedom in conics, but here we have very little. We have finite projective transformations. The group of projective transformations for cubics is finite.
+
+\begin{proof}
+  \item Pick a point in $\mathcal{C}$ and map it to $[0 : 0 : 1]$, this {\color{blue} kills }$J$.
+  \item Map a tangent to a line through $[0 : 0 : 1]$, i.e. $x = 0$. This {\color{red} kills }$I$.
+  \item Suppose we want to know how to {\color{green} kill }$F$.
+  \item Move the line $z= 0$ appropriately to {\color{orange} kill }$G$ and $E$.
+  \item Move the line $y = 0$ to the line $y = \a x$ such that,
+  $$ A + B\a^3 + C\a + D\a^2 = 0 $$
+  This {\color{red} kills }$A$. Now scale $x, y$ and $z$ appropriately.
+\end{proof}
+
+\subsection{How to kill $F$?}
+\begin{itemize}
+  \item Let $P$ be a point of $\mathcal{C}$
+  \item Let $L$ be a tangent to the curve.
+\end{itemize}
+
+Then $L \cap \mathcal{C}$ contains $P$ with multiplicity of at least two.
+\begin{itemize}
+  \item Suppose $P = [0 : 0 : 1]$
+  \item Suppose that $L$ is $x = 0$
+\end{itemize}
+
+\begin{question}
+  When is $F = 0$?
+\end{question}
+
+After some cancelling we find that $L$ is tangent to $\mathcal{C}$ with multiplicity 3. This means it's an infection point. So,
+$$ F = 0 \iff L \cap \mathcal{C} = P $$
+
+\subsubsection{Inflection Points}
+We want to measure how $L$ tangents $\mathcal{C}$ at $P$.
+\begin{itemize}
+  \item Suppose $P = [0 : 0 : 1]$
+  \item and let $L$ be $x = 0$
+\end{itemize}
+
+Then we take a taylor expansion, and sub in $L$,
+$$ z^{d- 1}x + z^{d-2}h_2(x, y) + \dots + zh_{d-1}(x, y) + h_d(x, y) = 0$$
+
+\begin{ndefi}[]
+  Let $(L \cdot\mathcal{C})_P$ be the smallest such $i$ such that $h_i(0, y) \ne 0$. Then $(L \cdot \mathcal{C})_P$ is the intersection multiplicity of $L$ and $\mathcal{C}$ at P, and
+  $$ (L \cdot \mathcal{C}) $$
+\end{ndefi}
+
+\subsubsection{Hessian}
+The hessian is just a mess of partial derivatives, look at ECM1905 (Advanced Calculus),
+
+\begin{nthm}[]
+  The polynomial $g(x, y, z)$ is not divisible by $f$. The set, of
+  $$ \begin{cases}
+    f(x, y, z) = 0\\
+    g(x, y ,z) = 0
+  \end{cases} $$
+  consists of all infection points
+\end{nthm}
+
+\begin{nthm}[]
+  If $d = 3$, then the curve has 9 inflection points.
+\end{nthm}
+
+\subsection{Weirstrass (Normal) Form}
+\begin{nthm}[Weirstrass Form]
+  There exists $\phi \in \PGL_3(\C)$ such that $\phi(\mathcal{C})$ is given,
+  $$ zy^3 = x^3 + axz^2 + bz^3 $$
+  for some $a, b \in \C$
+\end{nthm}
+The same as Lengendre, but without final step
+Assume $[0 : 1 : 0]$ is an inflection point and there is a tangent of $z = 0$. Now obtain $G = I = 0$ by using porjective transformations.
+$$ [x : y : z] \mapsto \left[ x : y - \frac{G}{2}x - \frac{I}{2}z : z \right] $$
+using $[x : y : z] \mapsto \left[ x + \frac{E}{3A}z : y : z \right]$ and get $E = 0$.\\
+
+INSERT NUMBER THEORY STUFF\\
+
+\subsection{Singular Cubics}
+Singularity makes things so much easier, as you start with a singular point.
+
+\begin{nthm}[]
+  There exists $\phi \in \PGL_3(\C)$ such that $\phi(\mathcal{C})$ is given by,
+  \begin{itemize}
+    \item $zx^2 = y^3$ (Caspobel Curve)
+    \item $zx^2 + zy^2 = y^3$ (Nodal Curve)
+  \end{itemize}
+\end{nthm}
+
+Take $[0 : 0 : 1]$ is a signular point of $\mathcal{C}$, then,
+\begin{enumerate}
+  \item FAST
+\end{enumerate}
+
+\subsection{Reducible Curves}
+\begin{nthm}[]
+  There exists $\phi \in \PGL_3(\C)$ such that $\phi(\mathcal{C})$ is given by,
+  \begin{itemize}
+    \item $x(zy + x^2) = 0$
+    \item $x(zx + y^2)= 0$
+    \item $xyz = 0$
+    \item $xy(x + y) = 0$
+    \item $x^2y = 0$
+   \item  $x^3 = 0$
+  \end{itemize}
+\end{nthm}
+\begin{proof}[]
+  Must be trivial as he went at 100mph.
+\end{proof}
+
+This was done by Newton
+
+
+\begin{ndefi}[Hasse Pencil]
+  Let $\mathcal{P}$ be a family of cubic curves is given by,
+  \begin{equation}
+    \l (x^3 + y^3 + z^3) + \mu xyz = 0
+  \end{equation}
+  where $[\l : \mu] \in \P_\C^1$. We say $\mathcal{P}$ is a pencil.
+\end{ndefi}
+If $\mu^3 \ne -27\l ^3$, the curve is smooth. Otherwise it's a union of three lines. The inflection points are the counterexample for Gallai-Sylvester.
+
+\begin{nthm}[Artebani, Dolgachev]
+  Let $\mathcal{C}$ be an arbitrary smooth curve in $\pc$. There exists $\phi \in \PGL_3(\C)$, such that $\phi(\mathcal{C}) \in \mathcal{P}$
+\end{nthm}
+
+
+
+
+
 
 \end{document}
