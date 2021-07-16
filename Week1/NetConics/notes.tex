@@ -723,6 +723,152 @@ Up to projective transformations, one of the following cases hold:
   \textbf{Step 9:} Do some more cases.
 \end{proof}
 
+\newpage
+\section{Lecture 5}
+\begin{itemize}
+  \item Fano Varieties
+  \item Classification of smooth Fano threefolds
+  \item Which smooth Fano manifolds admit Kahler-Einstein metric
+  \item Smooth Fano threefolds (No 2.24)
+\end{itemize}
+
+\subsection{Fano Varieties}
+They are named after Gino Fano. He wrote a lot of varieties and were named after him with a new definition from a Russian Mathematician. Unfortunataly, the italian school proofs were very incorrect, so they had to be rewritten. Fano cut corners and streamlined things.
+
+  Let $X$ be a projective smooth complex variety of dimension $n$.
+
+\begin{ndefi}[Fano Variety]
+  We say that $X$ is a Fano variety if $-K_X$ is ample.
+  \begin{itemize}
+    \item The number $(-K)X)^n is the degree$
+  \end{itemize}
+\end{ndefi}
+
+$\P^n$ is a fano variety. The grassmannian $\Gr(r, m)$ is a fano varierty. Let $X$ be a normal hyperspace in $\P^m$ of degree $d$. Then,
+$$ \text{$X$ is a fano variety} \iff d \le m $$
+
+\begin{ndefi}[Del Pezzo]
+  Del Pezzo surfaces are two dimensional Fano varieties
+\end{ndefi}
+We can characterise all of the smooth Pezzo surfaces, called the $S_d$ surfaces of degree $d$.
+
+\begin{itemize}
+  \item $S_9 = \P^2$
+  \item $S_8$ is $\P^1 \times \P^1$ or a blow up od $\P^2$ in one point.
+  \item $S_7$ is a blow up of $\P^2$ in two points.
+  \item and so on
+\end{itemize}
+A blow up is a lovely Algebraic Geometry operation.\footnote{Insert story about Italian Coffee Shop here and Ivan nearly getting arrested.}
+
+There exists a webpage called Fanography, that holds all of the characterisations. Lot's of conference talks, lots of nice results and a new classification was unveiled. The end of the list is \textbf{simple}.
+
+\subsection{Kahler-Einstein smooth Fano threefold}
+Which smooth Fano threefold admit a Kahler-Einstein metric? There a lot of metrics on a specific manifold, so people looked for something nicer. If you give a matric an Einstein condition, you get some nice properties and this metric must be unique. So this only makes sense for Fano varieties. People searched for conditions to make sure the metric exists. \\
+
+Ivan and eight friends studied this for a bit of fun, they met in California and looked at it.
+
+\begin{nthm}[]
+  Let $X$ be a general smooth Fano threefolds in the family $No\mathcal{N}$. Then $X$ admits a Kahler-Einstein metric if and only if,
+  \begin{figure}[!ht]
+  \centering
+  \includegraphics[width=0.3\textwidth]{./figures/L4.4}
+  \end{figure}
+\end{nthm}
+It took so long as it was proved case by case.
+
+We shall look at $No2.24$ we take $X$ being a smooth threefold in $\pc \times \pc$ of degree $(1, 2)$. This is a net of conics, so a family of conics. For some homogenous quatratic polynomials,
+$$ x \cdot f_2 (u,v,w) + y \cdot g_2 (u, v, w) + z \cdot h_2 (u, v, w) = 0 $$
+\begin{enumerate}
+  \item $f_2$
+  \item $g_2$
+  \item $h_2$
+\end{enumerate}
+Ivan studied this and if the threefold also had symmetries, it helps.
+
+\begin{nthm}[]
+  Suppose $X$ is given by,
+  $$ u^2x+v^2y + w^2z = \mu (vwx + uwy + uvz) = 0 $$
+  Then $X$ admits a Kahler-Einstein metric.
+\end{nthm}
+
+Then Ivan polished the paper, he noticed if count paprameter on which $x$ depends, it's $17$, but $\pc \times \pc$ has a lot of symmetries. There are $16$ dimensional group on the three folds (7 dimensional). Hence, we should have one parameter like the cubic curves. The whole space should depend on one parameter, $\mu$. Can you find the coordinate change to go between the two equations? The classifications of all is, possibly, open.Ivan played with the equations and got,
+\begin{nthm}[Classifications of net conics]
+  We can get,
+  \begin{enumerate}
+    \item either $X$ is given by,
+    $$ u^2x+v^2y + w^2z = \mu (vwx + uwy + uvz) = 0 $$
+    \item or $X$ is given by,
+    $$ u^2x + v^2y + w^2z + vwx + uwy = 0 $$
+    \item or $X$ is given by
+    $$ u^2 + v^2y + w^2z + vwx = 0 $$
+  \end{enumerate}
+\end{nthm}
+
+\begin{remark}
+   We see that the last two does not admit a Kahler-Einstein metric.
+\end{remark}
+
+This wasn't new, there was a preprint in the Edinburugh Library, written in French. Unpublished in 1972, but it was in French so we don't know what they actually proved. Ivan contacted them, they had forgot about the preprint. The authors aren't quite sure though.
+
+\subsection{Conic Bundle and discriminant cubic curve}
+
+Take a project $\pr_1 : X \to \pc$ be a projection of the first factor. For a point $[x : y : z] in \pc$, the preimage,
+$$ \pr_1^{-1}([x : y : z]) $$
+is a possibly reducible conic in $\pc$ with corrdinates $[ u : v : w ]$.
+\begin{enumerate}
+  \item Of $[ x : y : z]$ is general, then $ \pr_1^{-1}([x : y : z])$ is reducible.
+  \item For some $[x : y : z] in \pc$ is redicible.
+  \item Such points for a cubic curve. $\mathscr{C} \subset \pc$ % curcly C
+\end{enumerate}
+
+It is enough to show $X$ can be given by,
+\begin{equation}
+  (a_1vw + a_2u^2)x + (b_1uw + b_2v^2)y + (c_1uv + c_2w^2)z = 0 \tag{$*$}
+\end{equation}
+If $X$ is given by above,
+$$ a_2b_2c_2 \ne 0 $$
+as $X$ is smoothm then, $a_2 = b_2 = c_2 = 1$ and then we can scale again,
+$$ x \mapsto x \quad y \mapsto yt^2 \quad z \mapsto zs^2 \quad u \mapsto u \quad v \mapsto \frac{v}{s} \quad w \mapsto \frac{w}{t} $$
+for $s= \frac{a}{c}$ and $t = \frac{a}{b}$.
+
+Now choose our parameters such hthat $X$ is given by the equation above.
+\begin{itemize}
+  \item C is a discriminant cubic curve
+  \item Then C is either smooth or nodal, since $X$ is smooth.
+\end{itemize}
+If $C$ is reducible, then we may assume it is given by,
+$$ uvw = 0 $$
+This easily implies $X$ is given by ($*$). Choose coordinates such that,
+$$ \a x^3 + \b y^3 + \g z^3 + \delta xyz = 0 $$
+such that $\a, \b \ne 0$. Now change $u, v$ and $w$ such that we get a $(*)$. \\
+
+Let $C_x = \pr^{-1}_1([1 : 0 : 0])$, $C_y = \pr^{-1}_1([0 : 1 : 0])$ and $C_z = \pr^{-1}_1([0 : 0 : 1])$. We do this to reduce from $18$ unknowns, as 18 is too many. Consider $C_x$, $C_y$ and $C_z$ as conics in $\P^2$. Then they are smooth, as $\a, \b \ne 0$ and so it maps nicely and hence smooth. Choose our $u, v, w$ and so, $C_x= \{vw + u^2 = 0\}$,
+$$ (vw + u^2)x + f_2y + f_3z = 0 $$
+and so we now have 10 parameters, after scaling. If we take the hessian, we get the equation of $C$. If $C$ is singular, then $[0 : 0 : 1] = \sing C$ and $C_z$ is a double line. Observe, that $C_x \cap C_y \cap C_z = \varnothing$, since $X$ is smooth. But, $C_x \cap C_y \ne \varnothing$ and $C_x \cap C_z \ne \varnothing$. In lecture 2, we see that $\aut (\P^2, C_x)\equiv \PGL_2(\C)$. So we choose another $u, v, w$ and somore scaling. So,
+$$ u \mapsto u \quad v \mapsto sv \quad w \mapsto \frac{w}{s} $$
+for $s \ne 0$, then we get,
+\begin{figure}[!ht]
+\centering
+\includegraphics{./figures/L4.5}
+\end{figure}
+
+If $a_5 \ne 0$, we get $a_1 = a_5 = b_1 = 1$ and if $a_5 = 0$, $a_1 = b_1 = 1$. Now we fiddle and get what we want (this is ommited because it's honestly a mess, use Python). \\
+
+\section{Ivan Quotes}
+\begin{itemize}
+  \item What is blowup? Let me google.
+  \item $\P^1_\C$ is for babies
+  \item All my friends
+  \item This is simple
+  \item This is an exericse
+  \item Me and my friends.
+\end{itemize}
+
+
+
+
+
+
 
 
 
