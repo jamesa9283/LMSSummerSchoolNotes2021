@@ -358,4 +358,218 @@ Tropical Geometry has another Bezout's Theorem (which is the same as normal geom
 Similar approaches have succeeded in the study of Severi degree $N^{\Delta, d}$ of more general toric surfaces, double Hurwitz numbers $H_g(\l, \mu)$, Welshinger invariants $W_d$, ...
 
 
+\section{Cluster Algebras, Quivers mutations and triangulated surfaces - Anna Felikson}
+
+\subsection{Cluster Algebra}
+Very new, twenty years ago. It go connected to many many different areas of Maths.
+
+\begin{nthm}[Ptolemy Theorem]
+  ef = ac + bd on a cyclic quadrilateral
+\end{nthm}
+
+
+\begin{ndefi}[Quiver]
+  A quiver is a direct graph without loops and 2-cycles.
+\end{ndefi}
+
+\begin{ndefi}[Mutation]
+  A mutation , $\mu_k$ of quiver:
+  \begin{itemize}
+    \item reverse all arrows incident to $k$
+    \item for every path through $k$ with  and $p, q > 0$, do:
+    \begin{figure}[!ht]
+    \centering
+    \includegraphics{./figures/L3.1}
+    \end{figure}
+  \end{itemize}
+\end{ndefi}
+
+\begin{eg}
+  \begin{figure}[!ht]
+  \centering
+  \includegraphics{./figures/L3.2}
+  \end{figure}
+  \begin{figure}[!ht]
+  \centering
+  \includegraphics{./figures/L3.3}
+  \end{figure}
+\end{eg}
+
+If we have a quiver with six arrows, we can mutate however we want and do it in all directions and then we get new quivers and we can mutate again.\\
+
+$$ \text{Iterated mutations} \longrightarrow \text{many other quivers} $$
+$$ Q \longrightarrow \text{It's mutation class} $$
+
+\begin{property}
+  $\mu_k \circ \mu_k (Q) = Q$ for any quiver $Q$.
+\end{property}
+
+We get a regular graph.
+\newpage
+\begin{ndefi}[]
+  A quiver is of finite mutation type if its mutation class contains finitely many quivers
+\end{ndefi}
+
+\begin{question}
+  Which quivers are of finite mutation type?
+\end{question}
+
+Quick answer, not many.
+
+\begin{nlemma}[]
+  If $Q$ is connected $|Q| \ge 3$ and $Q$ contains arrow $\longrightarrow$ with $p > 2$, then $Q$ is mutation finite.
+\end{nlemma}
+
+if $q > r > 0$ and $p > 2$ , then you can make each step bigger and bigger at every step.
+\begin{figure}[!ht]
+\centering
+\includegraphics{./figures/L3.5}
+\end{figure}
+
+\subsection{Cluster Algebra}
+
+\begin{ndefi}[Seed]
+  A seed is a pair $(Q, \mathbf{u})$, where,
+  \begin{itemize}
+    \item $Q$ is a quiver with $n := |Q|$ vertices.
+    \item $\mathbf{u} = (u_1, \dots, u_n)$ is a set of rational functions.
+  \end{itemize}
+  Initial seed is $(Q_0, \mathbf{u}_0)$\\
+  Seed mutation: $\mu_k(Q, \mathbf{u}) = (\mu_k(Q), \mathbf{u}')$ where,
+  $$ u_k' = \frac{1}{u_k}\left( \prod_{i \to k} u_i + \prod_{k \to j} u_j \right) $$
+  if $u_i' = u_i$ if $i = k$\\
+  \textbf{Cluster Variable:} A function of seeds
+  \textbf{Cluster Algebra:} An alegbra with seeds and $+$ and $*$.
+\end{ndefi}
+
+We can link this to Markov Equation using the Markov quiver.
+
+
+By definition
+$$ u_i = \frac{P(x_1, \dots x_n)}{R(x_1, \dots, x_n)} $$
+where $P$ and $R$ are polynomials.
+
+\begin{nthm}[Laurent Phenomenon]
+  $R$ is a monomial, $R = x_1^{d_1}x_2^{d_2}\dots x_n^{d_n}$
+\end{nthm}
+
+\begin{nthm}[Positivity]
+  $P$ has positive coefficients.
+\end{nthm}
+
+\begin{ndefi}[Finite]
+  A cluster algebra is of finite type, so contains finitely many cluster variables.
+\end{ndefi}
+
+\begin{nthm}[]
+  A cluster algebra $\mathcal{A}$ is of finite type iff $Q$ is mutation equivilent to an orientation of a Dynkin diagram, $A_n, D_n, E_6, E_7, E_8$.
+\end{nthm}
+
+Dynkin diagrams describe: finite reflection group, semisimple Lie Algebras, surface singularities...
+
+A cluster algbra $\mathcal{A}(Q)$ is of finittype if $Q$ is of finite mutation type.
+
+\begin{figure}[!ht]
+\centering
+\includegraphics{./figures/L3.6}
+\end{figure}
+
+\begin{eg}
+  \begin{itemize}
+    \item $n= 2$
+    \[\begin{tikzcd}
+	\bullet & \bullet
+	\arrow[from=1-1, to=1-2]
+\end{tikzcd}\]
+    \item Quivers arising from triangulated surfaces.
+    \item Finitely many except that.
+  \end{itemize}
+\end{eg}
+
+To create a quiver from a triangulation
+
+\begin{figure}[!ht]
+\centering
+\includegraphics{./figures/L3.7}
+\caption{}
+\end{figure}
+
+Every edge of the triangulation, is a vertex of the quiver. Two eges of one triangle is an arrow of the quiver. This allows us to mutate by just rotating the diagonal.
+
+\begin{remark}
+  $Q$ from a triangulation $\implies$ weights of arrow $\le 2$.
+\end{remark}
+as every arc lies at most in two triangules.
+
+\begin{nthm}[Hatcher 1991]
+  Every two triangulations of the same surface are connected by a sequence of flips.
+\end{nthm}
+
+\begin{ncor}
+ \begin{enumerate}
+   \item Quivers from triangulations of the same surface are mutation-equivalent (and form the whole mutation class).
+   \item Quivers from triangulations are mutation-finite.
+ \end{enumerate}
+\end{ncor}
+
+\begin{question}
+  What else is mutation finite?
+\end{question}
+
+Any triangulated surface can be glued of,
+\begin{figure}[!ht]
+\centering
+\includegraphics{./figures/L3.8}
+\caption{}
+\end{figure}
+
+\begin{prop}
+  \{$Q$ is from triangulation\} $\iff$ \{$Q$ is block-decomposable\}
+\end{prop}
+
+\begin{question}
+  How to find all mutation-finite but not block-decomposable quivers
+\end{question}
+
+\textbf{Interlude:} How to classify hyperbolic space,\\
+\begin{enumerate}
+  \item They correspond to some polytopes.
+  \item Combinatorics of these polytopes are described by:
+  \begin{enumerate}
+    \item subdiagrams corresponding to finite objects
+    \item minimal subdiagrams corresponding to infinite objects.
+  \end{enumerate}
+\end{enumerate}
+
+\textbf{Idea:} Classify minimal non-decomposable quivers!
+
+\begin{nlemma}[]
+  If $Q$ is minimal non-decomposable quiver then $|Q| \le 7$
+\end{nlemma}
+
+\begin{nlemma}[]
+  If $Q$ is a minimal non-decomposable mutation-finite quiver, then it is equivilent to one of,
+
+\end{nlemma}
+
+
+\begin{nthm}[]
+  Let $Q$ be a connected quiver of finite mutation type:
+  \begin{itemize}
+    \item $|Q| = 2$
+    \item $Q$ is obtained from a triangulated surface.
+    \item $Q$ is mutation-equivalent to one of the following,
+    \begin{figure}[!ht]
+    \centering
+    \includegraphics{./figures/L3.9}
+    \end{figure}
+  \end{itemize}
+\end{nthm}
+
+\begin{proof}
+  Terrible and technical. It follows the same step as classifications of tesselations.
+\end{proof}
+
+
+
 \end{document}
