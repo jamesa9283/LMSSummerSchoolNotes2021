@@ -578,4 +578,40 @@ We can get rid of the bottom row and get infinite friezes or look at $SL(2, \Z)$
 
 We can link friezes to Cluster Algebra because of notation and Quivers.
 
+\section{Misc}
+
+\subsection{Quiver}
+A quiver is an oriented graph, a collection of arrow. There aren't any loops. Arrows also only can go in one direction.
+
+\[\begin{tikzcd}
+	{x_1\\ \bullet} & {x_2\\ \bullet}
+	\arrow[shift right=3, from=1-1, to=1-2]
+\end{tikzcd}\]
+
+We can consider a quiver mutation, you can change the graph locally.
+\begin{itemize}
+  \item You find a point.
+  \item Add an arrow from i to j
+  \item Reverse the arrows touching $k$
+  \item Cancel the two loops, if any.
+\end{itemize}
+
+Quiver verticies can have a vertex attached to them and we can also mutate these variables.
+$$ (x_1, x_2, \dots, x_n) $$
+So we change $x_k$ to $x_k' = \frac{1}{x_k} \prod_{i \to k}x_i + \prod_{k \to j} x_j$\\
+
+If we play this game with,
+
+Then we can get a frieze out of this. they are exactly made out of the rule of mutations from the quiver,
+
+\[\begin{tikzcd}
+	{x_1\\\bullet} & {x_2\\\bullet} & \dots & {x_w\\\bullet}
+	\arrow[shift left=3, from=1-4, to=1-3]
+	\arrow[shift right=3, from=1-2, to=1-3]
+	\arrow[shift right=3, from=1-1, to=1-2]
+\end{tikzcd}\]
+
+\subsection{Areas of research}
+Friezes are a subset of Cluster Algebra, and they are used in combinatorics for triangle disections.
+
 \end{document}
