@@ -360,6 +360,8 @@ Similar approaches have succeeded in the study of Severi degree $N^{\Delta, d}$ 
 
 \section{Cluster Algebras, Quivers mutations and triangulated surfaces - Anna Felikson}
 
+\textbf{Further Reading:} \href{http://www.math.lsa.umich.edu/~fomin/cluster.html}{Clusted Algebra Portal}\\
+
 \subsection{Cluster Algebra}
 Very new, twenty years ago. It go connected to many many different areas of Maths.
 
@@ -377,10 +379,18 @@ Very new, twenty years ago. It go connected to many many different areas of Math
   \begin{itemize}
     \item reverse all arrows incident to $k$
     \item for every path through $k$ with  and $p, q > 0$, do:
-    \begin{figure}[!ht]
-    \centering
-    \includegraphics{./figures/L3.1}
-    \end{figure}
+    \[\begin{tikzcd}
+    	& \bullet &&&& \bullet \\
+    	&& {} && {} \\
+    	\bullet && \bullet && \bullet && \bullet
+    	\arrow["p", from=3-1, to=1-2]
+    	\arrow["r", from=3-3, to=3-1]
+    	\arrow["q", from=1-2, to=3-3]
+    	\arrow["p"', from=1-6, to=3-5]
+    	\arrow["{pq-r}"', from=3-5, to=3-7]
+    	\arrow["q"', from=3-7, to=1-6]
+    	\arrow["{\mu_k}", shift right=2, squiggly, from=2-3, to=2-5]
+    \end{tikzcd}\]
   \end{itemize}
 \end{ndefi}
 
@@ -570,6 +580,312 @@ Any triangulated surface can be glued of,
   Terrible and technical. It follows the same step as classifications of tesselations.
 \end{proof}
 
+\section{Countability, Groups, Subgroups and Finiteness Properties - Ian Leary}
+
+There are three theorems from 1949, 1961 and 2018. They are all of the form,
+Which groups arise as subgroups of...\\
+
+\begin{nthm}[Higman Neumann Neumann, 1949]
+  Every countable group embeds in a 2-generator group.
+\end{nthm}
+
+\begin{nthm}[Higman, 1961]
+  A finitely generated group embeds in a finitely presented group iff it is recursively presented.
+\end{nthm}
+
+\begin{nthm}[Ian J Leary, 2018]
+  Every countable group embeds in an almost finitely presented group.
+\end{nthm}
+
+
+\subsection{Countability}
+Infinite sets have the same cardinality if there is a bijection between them. A countable set is one that is bijective with $\N$.\\
+Cantor showed that the powerset of any set $X$ is bigger than $X$.
+
+\begin{nthm}[Cantors Diagonal Argument]
+  There is no bijection between $f : X \to \mathcal{P}(X)$
+\end{nthm}
+\begin{proof}[Cantors Diagonal Argument]
+  Given $f$, define,
+  $$ Y = \{x \in X : x \notin f(x)\} $$
+  For any $x \in X$, $Y \ne f(x)$, because $x \in Y \triangle f(x)$
+\end{proof}
+
+We can do aleph numbers and talk about cardinality.
+$$ 2^{\aleph_0} = |\mathcal{P}(\N)| $$
+which is just $|\R|$.
+
+\subsection{Transendental}
+An algebraic number is $\l \in \C$ that is a root of $f(x) \in \Q[x]$. A transendental number is non-algebraic. Open problem: If there a $f(x, y) \in \Q[x, y] \ne 0$ such that, $f(e, \pi) = 0$. Are they transendentally independent?
+
+\begin{ndefi}[Louville transendental]
+  $$ \sum_{n>0}{ \frac{1}{10^{n!}} } $$
+\end{ndefi}
+
+\begin{nlemma}[]
+  If $\l \in \R$ is algebraic and not rational there are $K, m > 0$, so that for all large $q$,
+  $$ \left| \l - \frac{p}{q}  \right| \ge \frac{1}{Kq^m} $$
+\end{nlemma}
+
+If $\a$ is algebraic, then pick $f(x)$ with $f(\a) = 0$, then if $\a$ is a repeated root of $\a$, then consider $f'(x)$ instead. So wlog, consider $\a$ a root with multiplicity one. Also by considering multiplying by common denominator, let $f(x) \in \Z[x]$, then $f(\a) = 0$ and $f'(\a) \ne 0$.\\
+
+Let $m = \deg f(x)$, then for $\frac{p}{q}$ close to $\a$,
+$$ f\left( \frac{p}{q} \right) = 0 \quad \left| f\left( \frac{p}{q} \right) \right| = \frac{1}{q^m}$$
+
+Then if we draw the graph of $f(x)$, we shall get a straight line,
+
+\begin{figure}[!ht]
+\centering
+\includegraphics{./figures/L4.1}
+\end{figure}
+
+Cantors Ageument:\\
+There are only countably many polynomials $f(x) \in \Q[x]$, each with finitely many roots.
+
+\subsection{Countable Groups}
+
+A subset $S$ of a group $G$ generates $G$ if no proper subgroup contains $S$. equivalently, all elements of $G$ can be written as products of elements of $S$ and their inverses. $T \subset \N$,
+$$ \bigoplus_{p\in T} C_p $$
+$G$ is finitely generated if some finite $S$ generates.
+
+\begin{ndefi}[Finitely Presented]
+  $G$ is finitely presented if $G$ is finitely generated and the is a finite list of equations,
+  $$ w_1(a, b, c, \dots) = 1 \quad w_2 = 1 \quad\dots $$
+\end{ndefi}
+
+\begin{eg}
+  The free group $\F_2$, $\langle a, b : \rangle$
+  \begin{figure}[!ht]
+  \centering
+  \includegraphics[width=0.3\textwidth]{./figures/L4.2}
+  \end{figure}
+  You can make the universal cover of the tree,
+\end{eg}
+
+\begin{eg}
+  The free albelian group $\Z^2$,
+  $$ \langle a, b : aba^{-1}b^{-1} = 1 \rangle $$
+  \begin{figure}[!ht]
+  \centering
+  \includegraphics[width=0.1\textwidth]{./figures/L4.3}
+  \end{figure}
+\end{eg}
+
+\begin{nthm}[B H Neumann]
+  There are $2^\aleph_0$
+\end{nthm}
+
+\begin{proof}[Proof 1]
+  In the group $\prod_{n \ge 2} A_{2n+1}$ and look at,
+  $$ ((1, 2, 3), (1, 2, 3), \dots) $$
+  and,
+  $$ ((1, 2, 3, 4, 5), (1, 2, 3, 4, 5, 6, 7), \dots) $$
+  This group has $A_n$ as quotient iff $n \ge 5$ and odd.
+\end{proof}
+
+\begin{proof}[Proof 2 - Small Cancellation]
+  Given a disk $D$ made out of triangles,
+  $$ \sum_{V \in D^\circ} [6 - d(v)] + \sum_{v \in \delta D} [4 - d(v)] = 6 $$
+  This has consequences for group presentations in which the relators can only overlap in short pieces.
+\end{proof}
+
+A group presentation is $C'\left(\frac{1}{6} \right)$ if the the length of any common piece of two relators less than $\frac{1}{6}$ of the length of each of them.
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=0.2\textwidth]{./figures/L4.4}
+\end{figure}
+
+You can nicely cancel things down. If $w = 1$ in a group, with a $C'\left( \frac{1}{6}\right)$ presentation, then $w$ contains more than half a relator as a subword.
+
+
+For any $S \subset \N$, the words,
+$$ a^nb^nc^n \dots m^n \quad n \in S$$
+These are going to satisfy the $C'\left( \frac{1}{6} \right)$
+
+
+There are uncountably many non-isomorphic groups.
+$$ G(S) = \langle a, \dots, m : a^nb^nc^n \dots m^n = 1 \quad n \in S \rangle $$
+
+$$ G(S) \times C_{13} $$ % may be fish
+None of these are isomorphisms because $S \subset T$ and,
+$$ G(S) \to G(T) $$
+
+\begin{nthm}[HNN]
+  Every countable group embeds in a 2-generator group
+\end{nthm}
+
+For any group $H$ and for any isomorphism $f ; A \to B$, $A, B \le H$, there is a group $G$ and an element $t \in G$ so that $H \le G$ and for $a \in A$, $ta^{-1}t = f(a)$
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=0.3\textwidth]{./figures/L4.5}
+\end{figure}
+This is a HNN extension.
+
+We take the group and add the two loops, then we can find a free group on countably many generators. We can create two subgroups, one with $a$'s and the other $b$'s. Now we change the elements slightly, we add on just elements of the group and we still have a free group, so then we add the HNN extention and glue the blob on, we only two generators for the whole group.
+$$ {\color{green} g_3 } = {\color{green} b^3 a b^{-3}a^3 b a^{-3} } $$
+
+There are only countably many finitely presented group and each have countably many elements and hence pairs of groups. There are only countably many 2-generator groups. Which ones fit?
+
+\begin{nthm}[]
+  Higman
+\end{nthm}
+
+$G$ is recursively presented if there is an algeothm that it would print out all of the words of $w = 1$.
+
+\begin{proof}[]
+  One way around is a lot easier. If $G \le H$ with $H$ finitely presented.\\
+  Higmans Rope Trick reduces to a question about $\F_2$. Then you go from $\F_2$ to $\N$
+  $$ e \to 0 \qquad a \to 1 \qquad b \to 2 \qquad b^{-1} \to 3 \qquad a^{-1} \to 4 \qquad abba \to 1221 $$
+  Recursively enumerable subsets of $\N$ can be coded by in finitely presented groups.
+\end{proof}
+
+
+A family of groups parametrised by nice spaces $L \to BB_L$. Then it was generalised to $G_L(S)$ and then you get finitely many of them. All of these tricks work again, then hence you can encode naturals. All subsets of $\N$ can be coded up in almost finitely generated groups.
+
+The elements of $\Z G$ are finite sums such that
+$$ n_1g_1 + \dots + n_kg_k $$
+with $g_i \in G$ and $n_i \in \Z$ and we can do,
+$$ ng \cdot mh = nm(gh) $$
+\begin{eg}
+  If $G = \langle a \rangle$, then,
+  $$ \Z G = ???$$
+\end{eg}
+
+Then we have a ring homomorphism called the augementation ideal and then we can say that $G$ is almost finitely presented if $I_G$ is finitely presented as a $\Z G$-module.
+
+\section{Gradient flows in Differential Geometry}
+
+Given $E : \R^2 \to [0, \infty)$, $u \in \R^2$ and a direction $v$ we know that,
+$$ \frac{d}{dt}_{t=0} E(u + tv) = \nabla E(u) \cdot v \ge  -\|\nabla E(u) \|\cdot \|v\| $$
+with `=' if and only if $v$ is in the direction of $-\nabla E(u)$. If we evolve an initial state we can then take a minimal point and show that,
+$$ \nabla E(u_\infty) = 0 $$
+
+\subsection{Classical Geometry}
+Consider a two-dimensional $\Sigma$ in $\R^3$.
+\begin{itemize}
+  \item Is there a shortest connection between any two points $p_1, p_2 \in \Sigma$? Is there a shortest closed curve in any homotopy class?
+  \item How can we change a given curve $\gamma$ into a curve with minimal length, or more generally into a critical point of the length functional? i.e. a geodesic.
+\end{itemize}
+
+\noindent
+We can now consider minimal surfaces. If we are given some boundary surface in space. Can we find some sort of surface where the boundary is the boundary surface? This is called the plateau problems. This is because it's basically described using soap film.
+
+\noindent
+So can we change any given surface into a minimal surface, by leaving the boundary as it is?
+
+\subsection{Harmonic Maps}
+Given a domain $M$ and a target $N$, we can consider the dirichlet energy,
+$$ E(u) := \frac{1}{2}\int_M |\nabla u|^2 \qquad \text{ of maps $u : M \to N$}$$
+We want some sort of domain into some sort of target.\\
+
+Critical points of $E$ are called the harmonic maps and special cases include,
+\begin{itemize}
+  \item harmonic functions, i.e. solutions to $u_{xx} + u_{yy} =0$
+  \item closed geodesics respectively for geodesics with given endpoints.
+  \item parameterisation of minimal surfaces, if a harmonic map has the additional propertly that it preserves angles. (i.e. it is conformal)
+\end{itemize}
+
+\subsection{Gradient flows of length}
+\begin{itemize}
+  \item Curve shortening flow,
+  $$ \partial_t \gamma = \kappa \vec n $$
+  \item Mean curvature flow,
+  $$ \partial_t X = - H\vec n $$
+  where $H = \kappa_1 + \kappa_2$
+  \item Harmonic Map Flow, evolving map $u : M \to N \to \R^m$ %embedding
+  by,
+  $$ \partial_t u = -\nabla (u) = \Delta u + A(u)(\nabla u, \nabla u) $$
+  where $A$ is the second fundemental form that describes how the target $N$ is curvd in the surrounding euclidean space,
+  \item $N = \R^n$, we have the heat equation
+  \item $N = S^2$ : $\partial_t - \Delta u = |\nabla u|^2 u$
+\end{itemize}
+
+\subsection{Properties of gradient flows}
+If we hope to find minimisers / critical points of a function $E$ as $t \to \infty$ we need to ask,
+\begin{enumerate}
+  \item Do the solutions of the gradient flows exist for all time?
+  \item If so, do they converge as $t \to \infty$
+  \item If so, is the limit a minimiser or at least a critical point.
+\end{enumerate}
+
+For model case of $E : \R^2 \to [0, \infty)$ solutions exist for all times thanks to picard's existence theorem. In general, we have non-linear PDEs. We can use Lebesgue intgration and Functional Analysis. Some flows may have `weak solutions' though.
+
+\subsubsection{Convegence}
+Consider $\partial_t u = -\nabla E(u)$
+for $t \in [0, \infty)$ and we can recall,
+\begin{align*}
+  \frac{d}{dt} E(u) = \|\nabla E(u)\|^2 \\
+  &= -\|\partial_t u\|^2
+\end{align*}
+and so we can integrate,
+\begin{align*}
+  \int_0^\infty \|\partial_t u\|^2 &= E(u_0) - \lim_{t \to \infty} E(u(t))
+\end{align*}
+
+and so we can't escape to infinity in finite time.
+\begin{align*}
+  \|u(T) - u(0)\| &\le \int_0^\infty \|\partial_t u\| \cdot T\\
+  &\le \left| \int_0^\infty \partial_t u \right|^{\frac{1}{2}}T^{\frac{1}{2}}\\
+  &\le E(u_0)^{\frac{1}{2}}T^{\frac{1}{2}}
+\end{align*}
+But we can have $\int_0^\infty \|\partial_t u\|= \infty$
+
+If $u(t) \to u_\infty$ as $t \to \infty$ then $\nabla E(u_\infty) = 0$. So, do we get convergence?
+\begin{itemize}
+  \item $\|u(t)\| \to \infty$ as $t \to \infty$. Then this can be realised as we let the infinimum be at infinity. However, this isn't what an energy should be doing. Energy punishes large norms in the right norms.
+\end{itemize}
+
+Many energies are coecive wrt the right norm.
+$$ E(v) \to \infty \qquad \|v\|\to\infty $$
+\begin{eg}
+  For the harmonic map,
+  $$ E(u) = \frac{1}{2}\int |\nabla u|^2\,dx $$
+  for this the right space is $H^1 = W^{1, 2}$ we have sobolev space.
+  $$ H^1 = \{F : M \to N : f \text{ if weakly differentiable and } \int|\nabla f|^2 +|f| < \infty\} $$
+  $E$ is coercive wrt a norm if $M$ and $N$ are bounded. For analysis with $H^1$, but natural $\nabla$ flow is definite wrt a $L$-innerproduct, i.e.
+  $$ \int \nabla E(u) \cdot h = \frac{d}{dt}E(u + th) = \langle \nabla E(u) , h \rangle_{L^2}$$
+\end{eg}
+
+If $E$ is coercive and nice, does that imply convergence? Nice really means analytic and so we then get convergence in,
+\begin{itemize}
+  \item finite dimensions
+  \item for gradient flows such as the harmonic map flow if no singularities form.
+  \item also if singularity formations.
+\end{itemize}
+
+Let's consider a hill, an analytic hill, then a ball or drop of water will converge to a minimiser, a ring of minimal points. How do we take this hill interesting? Well we get some goats. Hills with goat tracks are not always analytic. The goats will dip the earth and make little windings. The problem now is that the drop of water will flow around and assymptote to the minimisers.
+
+\begin{nthm}[Lojasiewicz, 1962]
+  If $E : \R^n \to \R$ is analytic, then:
+  $$ \forall u^*, \nabla E(u^*) = 0 \exists \e > 0, \gamma \in [\frac{1}{2}, 1], |E(u) - E(u^*) \le \|\nabla E(u)\| \forall u, \|u - u^*\| < \e| $$
+\end{nthm}
+Then Simon in 1982, adapted this theorem for $E(u) = \int_\Omega L(u, \nabla u, x) dx$ which is analyticall convex. The current research is about Lojest. got settings with singulatirites and changing topologies.
+\begin{itemize}
+  \item Topping ('04) HMF : $S^2 \to S^2$
+  \item Colding-Minisozki `15 MCF
+  \item Melanie HMF and H-surfaces.
+\end{itemize}
+
+Now let's prove this theorem which stops the annoying problem with infinite length.
+
+\begin{claim}
+  Suppose $\partial_t = -\nabla E(u)$ is such that $\hat E(u) := E(u) - \lim_{T \to \infty} E(u(T))$ satisfies,
+  $$ \hat E(t)^\g \le \|\nabla E(u(t))\| $$
+  with $\g \in [\frac{1}{2}, 1]$. Then,
+  $$ \int_0^\infty \|\partial_t u\| < \infty $$
+\end{claim}
+\begin{proof}
+  So consider,
+  $$ -\frac{d}{dt} \hat E = \|\nabla E(u)\|^2 = \|\partial_t u\|\cdot \|\nabla E\| $$
+  so,
+  $$ -\frac{d}{dt} \hat E^{1-\g} = (1 - \g) \hat E^{-\g}\|\nabla E\|\cdot \|\partial_t u\| \ge (1 - \g)\|\partial_t u\| $$
+  and then we can integrate and get the conclustion,
+  $$ \int_{+}^\infty \|\partial_t u\| \to 0 $$
+  so we get (some) convergence.
+\end{proof}
+
+If $\g > \frac{1}{2}$ we get that it diverges, but if $\g = \frac{1}{2}$ we get exponential convergence
 
 
 \end{document}
